@@ -4,24 +4,24 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "body_type")
-public class BodyType {
+@Table(name = "transmission")
+public class Transmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    public static BodyType of(String name) {
-        BodyType bodyType = new BodyType();
-        bodyType.name = name;
-        return bodyType;
+    public static Transmission of(String name) {
+        Transmission transmission = new Transmission();
+        transmission.name = name;
+        return transmission;
     }
 
-    public static BodyType of(int id) {
-        BodyType bodyType = new BodyType();
-        bodyType.id = id;
-        return bodyType;
+    public static Transmission of(int id) {
+        Transmission transmission = new Transmission();
+        transmission.id = id;
+        return transmission;
     }
 
     public int getId() {
@@ -48,8 +48,8 @@ public class BodyType {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BodyType bodyType = (BodyType) o;
-        return id == bodyType.id && Objects.equals(name, bodyType.name);
+        Transmission that = (Transmission) o;
+        return id == that.id && Objects.equals(name, that.name);
     }
 
     @Override

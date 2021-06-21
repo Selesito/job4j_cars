@@ -1,7 +1,83 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.AuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/auth</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RegServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.RegServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegServlet</servlet-name>
+    <url-pattern>/reg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddAdsServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.AddAdsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddAdsServlet</servlet-name>
+    <url-pattern>/addAds</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AllServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.AllServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllServlet</servlet-name>
+    <url-pattern>/all</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ModelsServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.ModelsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModelsServlet</servlet-name>
+    <url-pattern>/models</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdsServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.AdsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdsServlet</servlet-name>
+    <url-pattern>/ads</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <param-name>path</param-name>
+    <param-value>c:\images</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>PhotoServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.PhotoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PhotoServlet</servlet-name>
+    <url-pattern>/photo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdsUserServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.AdsUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdsUserServlet</servlet-name>
+    <url-pattern>/adsUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SoldServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.SoldServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoldServlet</servlet-name>
+    <url-pattern>/sold</url-pattern>
+  </servlet-mapping>
 </web-app>

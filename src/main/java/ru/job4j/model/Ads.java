@@ -1,7 +1,9 @@
 package ru.job4j.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +13,8 @@ public class Ads {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String title;
+
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -18,25 +22,26 @@ public class Ads {
 
     private boolean status;
 
-    private String photo;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ad_id")
+    private List<Photo> photos = new ArrayList<>();
 
-    @ManyToOne
+    private String price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne
-    @JoinColumn(name = "body_type_id")
-    private BodyType bodyType;
-
-    public static Ads of(String description, boolean status, String photo) {
+    public static Ads of(String title, String description, boolean status, String price) {
         Ads ads = new Ads();
+        ads.title = title;
         ads.description = description;
         ads.status = status;
-        ads.photo = photo;
+        ads.price = price;
         ads.created = new Date(System.currentTimeMillis());
         return ads;
     }
@@ -73,12 +78,12 @@ public class Ads {
         this.status = status;
     }
 
-    public String getPhoto() {
-        return photo;
+    public List<Photo> getPhotos() {
+        return photos;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 
     public Car getCar() {
@@ -97,12 +102,24 @@ public class Ads {
         this.author = author;
     }
 
-    public BodyType getBodyType() {
-        return bodyType;
+    public String getPrice() {
+        return price;
     }
 
-    public void setBodyType(BodyType bodyType) {
-        this.bodyType = bodyType;
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void addPhoto(Photo photo) {
+        photos.add(photo);
     }
 
     @Override
@@ -114,16 +131,15 @@ public class Ads {
             return false;
         }
         Ads ads = (Ads) o;
-        return status == ads.status && Objects.equals(id, ads.id)
-                && Objects.equals(description, ads.description)
-                && Objects.equals(created, ads.created) && Objects.equals(photo, ads.photo)
-                && Objects.equals(car, ads.car) && Objects.equals(author, ads.author)
-                && Objects.equals(bodyType, ads.bodyType);
+        return status == ads.status && Objects.equals(id, ads.id) && Objects.equals(title, ads.title)
+                && Objects.equals(description, ads.description) && Objects.equals(created, ads.created)
+                && Objects.equals(photos, ads.photos) && Objects.equals(price, ads.price)
+                && Objects.equals(car, ads.car) && Objects.equals(author, ads.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, status, photo, car, author, bodyType);
+        return Objects.hash(id, title, description, created, status, photos, price, car, author);
     }
 }
 
